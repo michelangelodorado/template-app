@@ -1,0 +1,249 @@
+/* ===== Login Form Header ===== */
+.login-form-header {
+  text-align: center;
+  margin-bottom: 0;
+}
+
+.login-title {
+  color: var(--color-N600);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 26px;
+  margin-bottom: 10px;
+  margin-top: 0;
+}
+
+.login-subtitle {
+  margin-bottom: 25px;
+  color: var(--color-N500);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* ===== Card ===== */
+.login-card {
+  background-color: var(--color-N0);
+  border: 1px solid var(--color-N200);
+  border-radius: 4px;
+  box-shadow: var(--overlay-box-shadow);
+  min-width: 80px;
+}
+
+.login-card-body {
+  padding: 32px 56px;
+}
+
+@media screen and (max-width: 767px) {
+  .login-card-body {
+    padding: 20px;
+  }
+}
+
+/* ===== Error notification ===== */
+.login-error {
+  display: flex;
+  align-items: flex-start;
+  background-color: var(--color-pomegranate-light);
+  border-radius: 4px;
+  padding: 18px 20px 18px 16px;
+  margin-bottom: 16px;
+  font-size: 14px;
+  line-height: 1.43;
+}
+
+.login-error-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  color: var(--color-danger);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.login-error-text {
+  color: var(--color-N600);
+  padding-left: 16px;
+  flex: 1;
+}
+
+/* ===== Form groups ===== */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group:last-child {
+  margin-bottom: 0;
+}
+
+.form-group label {
+  display: inline-block;
+  margin-bottom: 4px;
+  color: var(--color-control-label);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 18px;
+}
+
+.required-asterisk {
+  margin-right: 2px;
+}
+
+/* ===== Form control (input) ===== */
+.form-control {
+  display: block;
+  width: 100%;
+  height: 40px;
+  padding: 10px 12px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: var(--color-control-text);
+  background-color: var(--color-control-bg);
+  background-clip: padding-box;
+  border: 1px solid var(--color-control-border);
+  border-radius: 4px;
+  transition: border-color 0.25s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.form-control:hover {
+  border-color: var(--color-control-border-hover);
+}
+
+.form-control:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px var(--color-blue-light);
+}
+
+.form-control::placeholder {
+  color: var(--color-control-placeholder);
+  opacity: 1;
+}
+
+.form-control:disabled {
+  background-color: var(--color-N100);
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* ===== Password field ===== */
+.password-field-wrapper {
+  position: relative;
+}
+
+.show-password-toggle {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: var(--color-N400);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  z-index: 2;
+  transition: color 0.2s;
+}
+
+.show-password-toggle:hover {
+  color: var(--color-primary);
+}
+
+.password-field-wrapper .form-control {
+  padding-right: 40px;
+}
+
+/* ===== Forgot password ===== */
+.forgot-password {
+  text-align: right;
+  font-size: 12px;
+  line-height: 20px;
+  margin-bottom: 20px;
+}
+
+.forgot-password .link {
+  color: var(--color-primary);
+  border-bottom: 1px solid transparent;
+  transition: all 0.2s;
+}
+
+.forgot-password .link:hover {
+  border-bottom-color: var(--color-primary);
+  text-decoration: none;
+}
+
+/* ===== Buttons ===== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 14px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.2s;
+  overflow: hidden;
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: var(--color-N0);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-blue-hover);
+}
+
+.btn-primary:disabled {
+  cursor: not-allowed;
+}
+
+.btn-block {
+  width: 100%;
+}
+
+.btn-lg {
+  height: 40px;
+  font-size: 14px;
+}
+
+/* ===== Spinner button ===== */
+.btn-spinner {
+  background-color: var(--color-blue-hover);
+  pointer-events: none;
+  gap: 8px;
+}
+
+.spinner-svg {
+  animation: spin 1.1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ===== Form submit area ===== */
+.form-submit {
+  margin-top: 0;
+}
+
+.form-submit .btn {
+  margin-bottom: 8px;
+}

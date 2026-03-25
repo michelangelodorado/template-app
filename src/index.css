@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Neutral palette */
+  --color-N0: #fff;
+  --color-N100: #f7f8fa;
+  --color-N200: #e6e9f3;
+  --color-N300: #cfd4e2;
+  --color-N400: #9ea7b8;
+  --color-N500: #6c778c;
+  --color-N600: #0f1e57;
+  --color-N700: #0b1640;
+
+  /* Brand & semantic */
+  --color-brand: #e4002b;
+  --color-blue: #4f73ff;
+  --color-blue-hover: #2e50d9;
+  --color-blue-light: #dbe2ff;
+  --color-pomegranate: #f94627;
+  --color-pomegranate-light: #ffdad4;
+
+  /* Aliases */
+  --color-primary: var(--color-blue);
+  --color-danger: var(--color-pomegranate);
+
+  /* Control tokens */
+  --color-control-border: var(--color-N400);
+  --color-control-border-hover: var(--color-blue-hover);
+  --color-control-bg: var(--color-N0);
+  --color-control-text: var(--color-N600);
+  --color-control-label: var(--color-N600);
+  --color-control-placeholder: var(--color-N400);
+
+  /* Shadows */
+  --overlay-box-shadow: 0 6px 24px rgba(11, 22, 64, 0.08);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--color-N600);
+  background-color: var(--color-N100);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+a:hover {
+  color: var(--color-blue-hover);
+  text-decoration: underline;
+}
+
+input:focus {
+  outline: none;
+}
