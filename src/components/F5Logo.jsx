@@ -1,10 +1,5 @@
 const F5Logo = ({ size = 48 }) => (
-  <a
-    href="https://www.f5.com/cloud"
-    className="f5-logo-link"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
+<div className="f5-logo-link">
     <svg
       width={size}
       height={size}
@@ -21,7 +16,7 @@ const F5Logo = ({ size = 48 }) => (
         fill="white"
       />
     </svg>
-  </a>
+  </div>
 )
 
 export default F5Logo
