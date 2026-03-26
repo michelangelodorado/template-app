@@ -23,7 +23,7 @@ const SpinnerIcon = () => (
   </svg>
 )
 
-const LoginForm = ({ tenantName = 'f5-asean' }) => {
+const LoginForm = ({ tenantName = 'f5-asean', onForgotPassword }) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
@@ -58,16 +58,22 @@ const LoginForm = ({ tenantName = 'f5-asean' }) => {
         </p>
       </div>
 
-      {/* Card */}
-      <div className="login-card">
-        <div className="login-card-body">
-          {error && (
-            <div className="login-error">
-              <span className="login-error-icon">!</span>
-              <span className="login-error-text">{error}</span>
-            </div>
-          )}
+      {/* Error - outside card like original */}
+      {error && (
+        <div className="login-error">
+          <span className="login-error-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 0L20 10L10 20L0 10L10 0Z" fill="none" stroke="#f94627" strokeWidth="1.5"/>
+              <text x="10" y="14" textAnchor="middle" fill="#f94627" fontSize="12" fontWeight="600">!</text>
+            </svg>
+          </span>
+          <span className="login-error-text">{error}</span>
+        </div>
+      )}
 
+      {/* Card */}
+      <div className={`login-card${error ? ' login-card-error' : ''}`}>
+        <div className="login-card-body">
           <form onSubmit={handleSubmit} noValidate>
             {/* Email */}
             <div className="form-group">
@@ -76,10 +82,10 @@ const LoginForm = ({ tenantName = 'f5-asean' }) => {
               </label>
               <input
                 id="username"
-                className="form-control"
+                className={`form-control${error ? ' is-invalid' : ''}`}
                 type="text"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => { setEmail(e.target.value); setError('') }}
                 autoFocus
                 autoComplete="off"
                 disabled={isLoading}
@@ -103,10 +109,10 @@ const LoginForm = ({ tenantName = 'f5-asean' }) => {
                 </button>
                 <input
                   id="password"
-                  className="form-control"
+                  className={`form-control${error ? ' is-invalid' : ''}`}
                   type={showPassword ? 'text' : 'password'}
                   value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  onChange={(e) => { setPassword(e.target.value); setError('') }}
                   autoComplete="off"
                   disabled={isLoading}
                 />
@@ -115,7 +121,14 @@ const LoginForm = ({ tenantName = 'f5-asean' }) => {
 
             {/* Forgot password */}
             <div className="forgot-password">
-              <a href="#" className="link">
+              <a
+                href="#"
+                className="link"
+                onClick={(e) => {
+                  e.preventDefault()
+                  onForgotPassword && onForgotPassword()
+                }}
+              >
                 Forgot Password?
               </a>
             </div>

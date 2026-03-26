@@ -39,10 +39,10 @@
   }
 }
 
-/* ===== Error notification ===== */
+/* ===== Error notification (outside card) ===== */
 .login-error {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   background-color: var(--color-pomegranate-light);
   border-radius: 4px;
   padding: 18px 20px 18px 16px;
@@ -59,14 +59,26 @@
   height: 20px;
   min-width: 20px;
   color: var(--color-danger);
-  font-size: 16px;
-  font-weight: 700;
 }
 
 .login-error-text {
   color: var(--color-N600);
   padding-left: 16px;
   flex: 1;
+}
+
+/* ===== Invalid input borders ===== */
+.form-control.is-invalid {
+  border-color: var(--color-danger);
+}
+
+.form-control.is-invalid:hover {
+  border-color: var(--color-danger);
+}
+
+.form-control.is-invalid:focus {
+  border-color: var(--color-danger);
+  box-shadow: 0 0 0 2px var(--color-pomegranate-light);
 }
 
 /* ===== Form groups ===== */

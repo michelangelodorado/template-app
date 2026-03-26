@@ -24,9 +24,7 @@
 .login-page-inner {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   padding-top: 8px;
-  flex: 1;
 }
 
 /* ===== Logo ===== */
