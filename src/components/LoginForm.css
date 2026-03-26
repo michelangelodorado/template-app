@@ -259,3 +259,22 @@
 .form-submit .btn {
   margin-bottom: 8px;
 }
+
+/* ===== Sign up text ===== */
+.sign-up-text {
+  text-align: center;
+  font-size: 13px;
+  color: var(--color-N500);
+  margin: 12px 0 0;
+}
+
+.sign-up-text .link {
+  color: var(--color-primary);
+  border-bottom: 1px solid transparent;
+  transition: all 0.2s;
+}
+
+.sign-up-text .link:hover {
+  border-bottom-color: var(--color-primary);
+  text-decoration: none;
+}

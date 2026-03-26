@@ -1,0 +1,11 @@
+/* ===== Sign Up Wrapper ===== */
+.signup-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
+.signup-header {
+  text-align: center;
+}

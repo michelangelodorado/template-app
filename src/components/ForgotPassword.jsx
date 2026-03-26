@@ -8,7 +8,7 @@ const SpinnerIcon = () => (
 )
 
 const ForgotPassword = ({ onBack }) => {
-  const [email, setEmail] = useState('')
+  const [username, setUsername] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const [submitted, setSubmitted] = useState(false)
   const [error, setError] = useState('')
@@ -16,8 +16,8 @@ const ForgotPassword = ({ onBack }) => {
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    if (!email) {
-      setError('Please enter your email address.')
+    if (!username) {
+      setError('Please enter your username.')
       return
     }
 
@@ -35,9 +35,9 @@ const ForgotPassword = ({ onBack }) => {
     return (
       <div className="forgot-password-wrapper">
         <div className="forgot-password-header">
-          <h3 className="login-title">Check your email</h3>
+          <h3 className="login-title">Check your inbox</h3>
           <p className="login-subtitle">
-            If the email address you entered is associated with an account, you will receive a link to reset your password.
+            If the username you entered is associated with an account, you will receive a link to reset your password.
           </p>
         </div>
 
@@ -66,7 +66,7 @@ const ForgotPassword = ({ onBack }) => {
       <div className="forgot-password-header">
         <h3 className="login-title">Forgot your password?</h3>
         <p className="login-subtitle">
-          Please enter your email and we will help you recover your password.
+          Please enter your username and if there's an associated email we will send a link to recover your password.
         </p>
       </div>
 
@@ -83,14 +83,14 @@ const ForgotPassword = ({ onBack }) => {
           <form onSubmit={handleSubmit} noValidate>
             <div className="form-group login-form-input">
               <label htmlFor="username">
-                <span className="required-asterisk">*</span>Email
+                <span className="required-asterisk">*</span>Username
               </label>
               <input
                 id="username"
                 className="form-control"
                 type="text"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
                 autoFocus
                 autoComplete="off"
                 disabled={isLoading}
