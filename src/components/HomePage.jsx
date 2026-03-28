@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import AdminPage from './AdminPage';
 import './HomePage.css';
 
 const F5Logo = () => (
@@ -231,7 +232,7 @@ const NavIcon = ({ type }) => {
   return icons[type] || icons.default;
 };
 
-export default function HomePage({ user, onLogout }) {
+export default function HomePage({ user, onLogout, users, setUsers }) {
   const [activeNav, setActiveNav] = useState('home');
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
@@ -361,52 +362,62 @@ export default function HomePage({ user, onLogout }) {
         {/* Main Content */}
         <main className="home-main">
           <div className="home-main-inner">
-            <div className="home-welcome">
-              <div className="home-welcome-text">
-                <h1 className="home-title">Welcome back, {firstName}</h1>
-                <p className="home-subtitle">
-                  Tenant: <strong>{tenant}</strong> &nbsp;·&nbsp; {workspaceItems.length} services available
-                </p>
-              </div>
-              <div className="home-search-bar">
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                  <circle cx="6.5" cy="6.5" r="5" stroke="var(--color-N400)" strokeWidth="1.5"/>
-                  <path d="M10.5 10.5L14 14" stroke="var(--color-N400)" strokeWidth="1.5" strokeLinecap="round"/>
-                </svg>
-                <input
-                  type="text"
-                  placeholder="Search services..."
-                  value={searchValue}
-                  onChange={e => setSearchValue(e.target.value)}
-                />
-                {searchValue && (
-                  <button className="search-clear" onClick={() => setSearchValue('')}>✕</button>
-                )}
-              </div>
-            </div>
-
-            <div className="workspace-grid">
-              {filteredItems.map(item => (
-                <div key={item.id} className={`workspace-tile workspace-tile--${item.color}`}>
-                  <div className="workspace-tile-icon">{item.icon}</div>
-                  <div className="workspace-tile-content">
-                    <h3 className="workspace-tile-title">{item.title}</h3>
-                    <p className="workspace-tile-desc">{item.description}</p>
+            {activeNav === 'admin' ? (
+              <AdminPage
+                users={users}
+                setUsers={setUsers}
+                currentUsername={user?.username}
+              />
+            ) : (
+              <>
+                <div className="home-welcome">
+                  <div className="home-welcome-text">
+                    <h1 className="home-title">Welcome back, {firstName}</h1>
+                    <p className="home-subtitle">
+                      Tenant: <strong>{tenant}</strong> &nbsp;·&nbsp; {workspaceItems.length} services available
+                    </p>
                   </div>
-                  <button className="workspace-tile-btn">
-                    Open
-                    <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
-                      <path d="M4 2l4 4-4 4" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
+                  <div className="home-search-bar">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                      <circle cx="6.5" cy="6.5" r="5" stroke="var(--color-N400)" strokeWidth="1.5"/>
+                      <path d="M10.5 10.5L14 14" stroke="var(--color-N400)" strokeWidth="1.5" strokeLinecap="round"/>
                     </svg>
-                  </button>
+                    <input
+                      type="text"
+                      placeholder="Search services..."
+                      value={searchValue}
+                      onChange={e => setSearchValue(e.target.value)}
+                    />
+                    {searchValue && (
+                      <button className="search-clear" onClick={() => setSearchValue('')}>✕</button>
+                    )}
+                  </div>
                 </div>
-              ))}
-              {filteredItems.length === 0 && (
-                <div className="workspace-empty">
-                  <p>No services match "<strong>{searchValue}</strong>"</p>
+
+                <div className="workspace-grid">
+                  {filteredItems.map(item => (
+                    <div key={item.id} className={`workspace-tile workspace-tile--${item.color}`}>
+                      <div className="workspace-tile-icon">{item.icon}</div>
+                      <div className="workspace-tile-content">
+                        <h3 className="workspace-tile-title">{item.title}</h3>
+                        <p className="workspace-tile-desc">{item.description}</p>
+                      </div>
+                      <button className="workspace-tile-btn">
+                        Open
+                        <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
+                          <path d="M4 2l4 4-4 4" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                      </button>
+                    </div>
+                  ))}
+                  {filteredItems.length === 0 && (
+                    <div className="workspace-empty">
+                      <p>No services match "<strong>{searchValue}</strong>"</p>
+                    </div>
+                  )}
                 </div>
-              )}
-            </div>
+              </>
+            )}
           </div>
         </main>
       </div>

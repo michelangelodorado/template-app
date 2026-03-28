@@ -1,0 +1,328 @@
+/* ============================================================
+   AdminPage.css — User Account Management
+   Uses the same CSS custom properties as the rest of the app
+   ============================================================ */
+
+/* ---- Card ---- */
+.admin-card {
+  background: var(--color-N0);
+  border: 1px solid var(--color-N200);
+  border-radius: 10px;
+  padding: 24px;
+}
+
+.admin-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.admin-card-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-N600);
+  margin: 0;
+}
+
+/* ---- Table ---- */
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.admin-table th {
+  text-align: left;
+  padding: 10px 12px;
+  font-weight: 600;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-N500);
+  border-bottom: 2px solid var(--color-N200);
+  white-space: nowrap;
+}
+
+.admin-table td {
+  padding: 12px;
+  color: var(--color-N600);
+  border-bottom: 1px solid var(--color-N200);
+  vertical-align: middle;
+}
+
+.admin-table tr:last-child td {
+  border-bottom: none;
+}
+
+.admin-table tr:hover td {
+  background: var(--color-N100);
+}
+
+/* ---- Action Buttons ---- */
+.admin-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.admin-btn-edit,
+.admin-btn-delete {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--color-N300);
+  border-radius: 6px;
+  background: var(--color-N0);
+  cursor: pointer;
+  color: var(--color-N500);
+  transition: border-color 0.12s, color 0.12s, background 0.12s;
+}
+
+.admin-btn-edit:hover {
+  border-color: var(--color-blue);
+  color: var(--color-blue);
+  background: var(--color-blue-light);
+}
+
+.admin-btn-delete:hover {
+  border-color: var(--color-pomegranate);
+  color: var(--color-pomegranate);
+  background: var(--color-pomegranate-light);
+}
+
+.admin-btn-add {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  background: var(--color-blue);
+  color: var(--color-N0);
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.15s;
+}
+
+.admin-btn-add:hover {
+  background: var(--color-blue-hover);
+}
+
+/* ---- Modal Overlay ---- */
+.admin-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(11, 22, 64, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 500;
+  animation: admin-fade-in 0.15s ease;
+}
+
+@keyframes admin-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ---- Modal ---- */
+.admin-modal {
+  background: var(--color-N0);
+  border-radius: 10px;
+  box-shadow: 0 12px 40px rgba(11, 22, 64, 0.2);
+  width: 480px;
+  max-width: 92vw;
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: admin-slide-up 0.15s ease;
+}
+
+@keyframes admin-slide-up {
+  from { transform: translateY(12px); opacity: 0; }
+  to   { transform: translateY(0); opacity: 1; }
+}
+
+.admin-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px 0;
+}
+
+.admin-modal-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-N600);
+  margin: 0;
+}
+
+.admin-modal-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: none;
+  border: none;
+  border-radius: 6px;
+  color: var(--color-N400);
+  cursor: pointer;
+  font-size: 18px;
+  transition: background 0.12s, color 0.12s;
+}
+
+.admin-modal-close:hover {
+  background: var(--color-N100);
+  color: var(--color-N600);
+}
+
+.admin-modal-body {
+  padding: 20px 24px;
+}
+
+.admin-modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 0 24px 20px;
+}
+
+/* ---- Form layout inside modal ---- */
+.admin-form-row {
+  display: flex;
+  gap: 12px;
+}
+
+.admin-form-row > .form-group {
+  flex: 1;
+}
+
+.admin-form .form-group {
+  margin-bottom: 14px;
+}
+
+.admin-form .form-group label {
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-N500);
+  margin-bottom: 4px;
+}
+
+.admin-form .form-control {
+  width: 100%;
+  padding: 8px 10px;
+  font-size: 13px;
+  border: 1px solid var(--color-N300);
+  border-radius: 6px;
+  color: var(--color-N600);
+  background: var(--color-N0);
+  font-family: inherit;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.admin-form .form-control:focus {
+  border-color: var(--color-blue);
+  box-shadow: 0 0 0 3px var(--color-blue-light);
+  outline: none;
+}
+
+.admin-form .form-control:disabled {
+  background: var(--color-N100);
+  color: var(--color-N400);
+  cursor: not-allowed;
+}
+
+/* ---- Modal action buttons ---- */
+.admin-btn-cancel {
+  padding: 8px 16px;
+  background: var(--color-N0);
+  color: var(--color-N600);
+  border: 1px solid var(--color-N300);
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.12s, border-color 0.12s;
+}
+
+.admin-btn-cancel:hover {
+  background: var(--color-N100);
+  border-color: var(--color-N400);
+}
+
+.admin-btn-save {
+  padding: 8px 16px;
+  background: var(--color-blue);
+  color: var(--color-N0);
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.15s;
+}
+
+.admin-btn-save:hover {
+  background: var(--color-blue-hover);
+}
+
+.admin-btn-danger {
+  padding: 8px 16px;
+  background: var(--color-pomegranate);
+  color: var(--color-N0);
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.15s;
+}
+
+.admin-btn-danger:hover {
+  background: #e03518;
+}
+
+/* ---- Delete confirmation ---- */
+.admin-delete-msg {
+  font-size: 14px;
+  color: var(--color-N600);
+  margin: 0 0 4px;
+  line-height: 1.6;
+}
+
+.admin-delete-warn {
+  font-size: 13px;
+  color: var(--color-pomegranate);
+  margin: 8px 0 0;
+}
+
+/* ---- Empty state ---- */
+.admin-empty {
+  text-align: center;
+  padding: 32px 16px;
+  color: var(--color-N400);
+  font-size: 14px;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 600px) {
+  .admin-form-row {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .admin-modal {
+    width: 100%;
+    margin: 0 8px;
+  }
+}

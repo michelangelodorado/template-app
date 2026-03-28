@@ -7,9 +7,22 @@ import PrivacyFooter from './components/PrivacyFooter'
 import HomePage from './components/HomePage'
 import './App.css'
 
+// Mock credentials — replace with a real API call when ready
+const INITIAL_USERS = {
+  'admin': {
+    password: 'admin',
+    first_name: 'Michelangelo',
+    last_name: 'Dorado',
+    email: 'm.dorado@f5.com',
+    cname: 'f5-asean',
+    tenant: 'f5-asean-qdunplmr',
+  },
+}
+
 function App() {
   const [currentView, setCurrentView] = useState('login')
   const [currentUser, setCurrentUser] = useState(null)
+  const [users, setUsers] = useState(INITIAL_USERS)
 
   const handleLoginSuccess = (userData) => {
     setCurrentUser(userData)
@@ -23,7 +36,7 @@ function App() {
 
   // Home page is full-screen — rendered outside the kc-container
   if (currentView === 'home') {
-    return <HomePage user={currentUser} onLogout={handleLogout} />
+    return <HomePage user={currentUser} onLogout={handleLogout} users={users} setUsers={setUsers} />
   }
 
   return (
@@ -40,6 +53,7 @@ function App() {
             {currentView === 'login' && (
               <LoginForm
                 tenantName="F5 Application"
+                users={users}
                 onLoginSuccess={handleLoginSuccess}
                 onForgotPassword={() => setCurrentView('forgot')}
                 onSignUp={() => setCurrentView('signup')}

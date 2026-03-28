@@ -21,19 +21,7 @@ const SpinnerIcon = () => (
   </svg>
 )
 
-// Mock credentials — replace with a real API call when ready
-const MOCK_USERS = {
-  'admin': {
-    password: 'admin',
-    first_name: 'Michelangelo',
-    last_name: 'Dorado',
-    email: 'm.dorado@f5.com',
-    cname: 'f5-asean',
-    tenant: 'f5-asean-qdunplmr',
-  },
-}
-
-const LoginForm = ({ tenantName = 'f5-asean', onForgotPassword, onSignUp, onLoginSuccess }) => {
+const LoginForm = ({ tenantName = 'f5-asean', users, onForgotPassword, onSignUp, onLoginSuccess }) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
@@ -55,9 +43,10 @@ const LoginForm = ({ tenantName = 'f5-asean', onForgotPassword, onSignUp, onLogi
     setTimeout(() => {
       setIsLoading(false)
 
-      const matched = MOCK_USERS[username]
+      const matched = users[username]
       if (matched && matched.password === password) {
         onLoginSuccess && onLoginSuccess({
+          username,
           first_name: matched.first_name,
           last_name: matched.last_name,
           email: matched.email,
