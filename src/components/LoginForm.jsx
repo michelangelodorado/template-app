@@ -17,13 +17,23 @@ const EyeOffIcon = () => (
 
 const SpinnerIcon = () => (
   <svg className="spinner-svg" width="18" height="18" viewBox="0 0 18 18" fill="#fff" xmlns="http://www.w3.org/2000/svg">
-    <path
-      d="M15.75 9A6.75 6.75 0 119 2.25a.75.75 0 000-1.5A8.25 8.25 0 1017.25 9a.75.75 0 00-1.5 0z"
-    />
+    <path d="M15.75 9A6.75 6.75 0 119 2.25a.75.75 0 000-1.5A8.25 8.25 0 1017.25 9a.75.75 0 00-1.5 0z" />
   </svg>
 )
 
-const LoginForm = ({ tenantName = 'f5-asean', onForgotPassword, onSignUp }) => {
+// Mock credentials — replace with a real API call when ready
+const MOCK_USERS = {
+  'admin': {
+    password: 'admin',
+    first_name: 'Michelangelo',
+    last_name: 'Dorado',
+    email: 'm.dorado@f5.com',
+    cname: 'f5-asean',
+    tenant: 'f5-asean-qdunplmr',
+  },
+}
+
+const LoginForm = ({ tenantName = 'f5-asean', onForgotPassword, onSignUp, onLoginSuccess }) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
@@ -41,10 +51,22 @@ const LoginForm = ({ tenantName = 'f5-asean', onForgotPassword, onSignUp }) => {
     setError('')
     setIsLoading(true)
 
-    // Simulate login
+    // Simulate API call — swap this setTimeout for a real fetch() when ready
     setTimeout(() => {
       setIsLoading(false)
-      setError('Invalid username or password.')
+
+      const matched = MOCK_USERS[username]
+      if (matched && matched.password === password) {
+        onLoginSuccess && onLoginSuccess({
+          first_name: matched.first_name,
+          last_name: matched.last_name,
+          email: matched.email,
+          cname: matched.cname,
+          tenant: matched.tenant,
+        })
+      } else {
+        setError('Invalid username or password.')
+      }
     }, 2000)
   }
 
@@ -75,7 +97,7 @@ const LoginForm = ({ tenantName = 'f5-asean', onForgotPassword, onSignUp }) => {
       <div className={`login-card${error ? ' login-card-error' : ''}`}>
         <div className="login-card-body">
           <form onSubmit={handleSubmit} noValidate>
-            {/* Email */}
+            {/* Username */}
             <div className="form-group">
               <label htmlFor="username">
                 <span className="required-asterisk">*</span>Username
@@ -149,11 +171,14 @@ const LoginForm = ({ tenantName = 'f5-asean', onForgotPassword, onSignUp }) => {
 
             {/* Sign up */}
             <p className="sign-up-text">
-              No account yet? <a
+              No account yet?{' '}
+              <a
                 href="#"
                 className="link"
                 onClick={(e) => { e.preventDefault(); onSignUp && onSignUp() }}
-              >Sign up here</a>
+              >
+                Sign up here
+              </a>
             </p>
           </form>
         </div>

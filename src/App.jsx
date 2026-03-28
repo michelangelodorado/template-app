@@ -4,10 +4,27 @@ import LoginForm from './components/LoginForm'
 import ForgotPassword from './components/ForgotPassword'
 import SignUp from './components/SignUp'
 import PrivacyFooter from './components/PrivacyFooter'
+import HomePage from './components/HomePage'
 import './App.css'
 
 function App() {
   const [currentView, setCurrentView] = useState('login')
+  const [currentUser, setCurrentUser] = useState(null)
+
+  const handleLoginSuccess = (userData) => {
+    setCurrentUser(userData)
+    setCurrentView('home')
+  }
+
+  const handleLogout = () => {
+    setCurrentUser(null)
+    setCurrentView('login')
+  }
+
+  // Home page is full-screen — rendered outside the kc-container
+  if (currentView === 'home') {
+    return <HomePage user={currentUser} onLogout={handleLogout} />
+  }
 
   return (
     <div className="kc-container">
@@ -23,6 +40,7 @@ function App() {
             {currentView === 'login' && (
               <LoginForm
                 tenantName="F5 Application"
+                onLoginSuccess={handleLoginSuccess}
                 onForgotPassword={() => setCurrentView('forgot')}
                 onSignUp={() => setCurrentView('signup')}
               />
